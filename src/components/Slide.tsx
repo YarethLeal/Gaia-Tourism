@@ -16,7 +16,7 @@ const Slide: React.FC = () => (
   <IonContent>
     <IonSlides pager={true} options={slideOpts}>
       <IonSlide>
-        <IonImg src="https://travesiapirenaica.com/wp-content/uploads/2018/08/Turismo-de-monta%C3%B1a-mejor-opci%C3%B3n_by-wanderer-455338_1280.jpg_760x500.jpg" />
+        <IonImg src="https://source.unsplash.com/collection/381380" />
       </IonSlide>
       <IonSlide>
         <IonImg src="https://p4.wallpaperbetter.com/wallpaper/252/716/942/sea-leisure-lagoon-summer-wallpaper-preview.jpg" />
