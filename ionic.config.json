@@ -1,0 +1,7 @@
+{
+  "name": "gaia-tourism",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
