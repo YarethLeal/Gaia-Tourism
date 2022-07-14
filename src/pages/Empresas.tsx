@@ -1,10 +1,9 @@
-import { IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonList, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { useState, useEffect } from 'react';
+import { IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonItem, IonLabel, IonList, IonMenuButton, IonModal, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { useState, useEffect} from 'react';
 import paquete from '../service/service-paquete';
 
 const Empresas: React.FC = () => {
   const [data, setData] = useState<any>([]);
-
   useEffect(() => {
     paquete.getEmpresas().then(response => {
       setData(response);
@@ -30,7 +29,7 @@ const Empresas: React.FC = () => {
         <IonList>
           {data.map((empresaData: any) => {
             return (
-              <IonCard>
+              <IonCard id={empresaData.empresa}>
                 <IonCardHeader>
                   <IonCardTitle>{empresaData.empresa}</IonCardTitle>
                 </IonCardHeader>

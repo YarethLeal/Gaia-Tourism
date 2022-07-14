@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.ucr.app',
   appName: 'gaia-tourism',
   webDir: 'build',
   bundledWebRuntime: false

@@ -1,18 +1,15 @@
 import {
   IonContent,
   IonIcon,
-  IonThumbnail,
   IonItem,
   IonLabel,
   IonList,
-  IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonNote,
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import { bagHandleOutline, bagHandleSharp, businessOutline, businessSharp, mapOutline, mapSharp } from 'ionicons/icons';
+import { bagHandleOutline, bagHandleSharp, businessOutline, businessSharp } from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonSlides, IonSlide, IonContent, IonAvatar, IonImg } from '@ionic/react';
+import { IonSlides, IonSlide, IonContent, IonImg } from '@ionic/react';
 import './Slide.css';
 
 // Optional parameters to pass to the swiper instance.

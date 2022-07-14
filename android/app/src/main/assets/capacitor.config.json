@@ -1,0 +1,6 @@
+{
+	"appId": "com.ucr.app",
+	"appName": "gaia-tourism",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

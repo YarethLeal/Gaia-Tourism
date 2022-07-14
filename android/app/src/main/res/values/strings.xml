@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">gaia-tourism</string>
+    <string name="title_activity_main">gaia-tourism</string>
+    <string name="package_name">com.ucr.app</string>
+    <string name="custom_url_scheme">com.ucr.app</string>
+</resources>
