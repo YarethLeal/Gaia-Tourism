@@ -1,7 +1,6 @@
 import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonInput, IonItem, IonLabel, IonList, IonMenuButton, IonModal, IonPage, IonRow, IonSelect, IonSelectOption, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
 import { useState, useEffect } from 'react';
 import { useForm, Controller } from "react-hook-form";
-import PaqueteModal from '../components/PaqueteModal';
 
 import paquete from '../service/service-paquete';
 
