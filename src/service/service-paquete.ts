@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://gaiaapi.azurewebsites.net/';
+const BASE_URL = 'https://gaia2.azurewebsites.net/';
 
 const paquete = {
     getPaquetes: async () => {
@@ -45,7 +45,8 @@ const paquete = {
     getBuscar: async (data: any) => {
         const response = await axios.post(BASE_URL+'buscar',{data})
             .then((response) => {
-                return response.data[0];
+                console.log(response.data);
+                return response.data;
             })
             .catch(error => {
                 console.log("error");

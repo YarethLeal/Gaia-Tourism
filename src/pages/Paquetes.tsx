@@ -1,30 +1,70 @@
-import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonInput, IonItem, IonList, IonMenuButton, IonPage, IonRow, IonSearchbar, IonSelect, IonSelectOption, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonInput, IonItem, IonLabel, IonList, IonMenuButton, IonModal, IonPage, IonRow, IonSelect, IonSelectOption, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
 import { useState, useEffect } from 'react';
 import { useForm, Controller } from "react-hook-form";
+import PaqueteModal from '../components/PaqueteModal';
 
 import paquete from '../service/service-paquete';
 
+function decision(map: Boolean, data: any) {
+  if (map) {
+    return data.map((paqueteData: any) => {
+      return (
+        <IonItem>
+          <IonThumbnail slot="start">
+            <img src="https://source.unsplash.com/collection/410546" />
+          </IonThumbnail>
+          <IonLabel>
+            <h1>{paqueteData.lugar}</h1>
+            <p>Lugar turistico: {paqueteData.tipo}</p>
+            <p>Precio: {paqueteData.precio}</p>
+            <p>Cantidad de personas: {paqueteData.cant_personas}</p>
+            <p>Empresa: {paqueteData.empresa}</p>
+          </IonLabel>
+        </IonItem>
+      );
+    })
+  }
+  else {
+    return (
+      <IonItem>
+        <IonThumbnail slot="start">
+          <img src="https://source.unsplash.com/collection/410546" />
+        </IonThumbnail>
+        <IonLabel>
+          <h1>{data.lugar}</h1>
+          <p>Lugar turistico: {data.tipo}</p>
+          <p>Precio: {data.precio}</p>
+          <p>Cantidad de personas: {data.cant_personas}</p>
+          <p>Empresa: {data.empresa}</p>
+        </IonLabel>
+      </IonItem>
+    );
+  }
+}
 
 const Paquetes: React.FC = () => {
   const [dataPaquete, setDataPaquete] = useState<any>([]);
   const [dataLugar, setDataLugar] = useState<any>([]);
+  const [map, setMapStatus] = useState<Boolean>(true);
   const { control, handleSubmit } = useForm();
 
   const buscar = (formData: any) => {
-      paquete.getBuscar(Object.values(formData)).then(response => {
-          setDataPaquete(response);
+    formData = ['', formData['lugar'], '', formData['precio'], formData['cantidad'], formData['empresa']];
+    paquete.getBuscar(formData).then(response => {
+      setMapStatus(false);
+      setDataPaquete(response);
     });
-    console.log(Object.values(formData));
   };
 
   useEffect(() => {
     paquete.getPaquetes().then(response => {
+      setMapStatus(true);
       setDataPaquete(response);
     });
     paquete.getLugares().then(response => {
       setDataLugar(response);
     });
-  }, [setDataPaquete])
+  }, [setDataPaquete, setMapStatus])
 
 
   return (
@@ -114,7 +154,7 @@ const Paquetes: React.FC = () => {
                 </IonCol>
                 <IonCol>
                   <IonItem>
-                  <Controller
+                    <Controller
                       render={
                         ({
                           field: { onChange, onBlur, value }
@@ -122,10 +162,10 @@ const Paquetes: React.FC = () => {
                         (
                           <IonSelect onIonChange={onChange} value={value} onIonBlur={onBlur} placeholder="Empresas...">
                             <IonSelectOption value="1">Beer Group</IonSelectOption>
-                      <IonSelectOption value="2">Costa Rica Te Enamora</IonSelectOption>
-                      <IonSelectOption value="3">Zboncak-Thiel</IonSelectOption>
-                      <IonSelectOption value="4">Gulgowski-Marvin</IonSelectOption>
-                      <IonSelectOption value="05">Stokes-Schumm</IonSelectOption>
+                            <IonSelectOption value="2">Costa Rica Te Enamora</IonSelectOption>
+                            <IonSelectOption value="3">Zboncak-Thiel</IonSelectOption>
+                            <IonSelectOption value="4">Gulgowski-Marvin</IonSelectOption>
+                            <IonSelectOption value="05">Stokes-Schumm</IonSelectOption>
                           </IonSelect>
                         )
                       }
@@ -142,21 +182,9 @@ const Paquetes: React.FC = () => {
           </IonGrid>
         </IonToolbar>
         <IonList>
-          {dataPaquete.map((paqueteData: any) => {
-            return (
-              <IonCard>
-                <IonCardHeader>
-                  <IonCardTitle>{paqueteData.lugar}</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  <p>Lugar turistico: {paqueteData.tipo}</p>
-                  <p>Precio: {paqueteData.precio}</p>
-                  <p>Cantidad de personas: {paqueteData.cant_personas}</p>
-                  <p>Empresa: {paqueteData.empresa}</p>
-                </IonCardContent>
-              </IonCard>
-            );
-          })}
+          {
+            decision(map, dataPaquete)
+          }
         </IonList>
       </IonContent>
     </IonPage>
